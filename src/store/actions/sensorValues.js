@@ -74,7 +74,9 @@ export const getPeriodSensorValues = (siteKey, deviceKey, sensorKey, period) => 
 		}
 		axios.get(url, headers)
 			.then(res => {
+				console.log("Success!");
 				dispatch(getPeriodSensorValuesSuccess(res.data));
+				console.log("Data is: ", res.data);
 			})
 			.catch(error => {
 				console.log("error", error);

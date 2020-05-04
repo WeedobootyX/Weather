@@ -12,7 +12,9 @@ class WeatherInfo extends Component{
 		const siteKey = "polypod";
 		const deviceKey = "arduino-nano-33-iot"; 
 		const sensorKey = "rain";
-		this.props.getPeriodSensorValues(siteKey, deviceKey, sensorKey);
+		const periodHrs = 24;
+		console.log("----------before----------");
+		this.props.getPeriodSensorValues(siteKey, deviceKey, sensorKey, periodHrs);
 	}
 
 	render(){
@@ -32,7 +34,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch)  => {
 	return {
-		getPeriodSensorValues: (siteKey, deviceKey, sensorKey) => dispatch(actions.getPeriodSensorValues(siteKey, deviceKey, sensorKey))	
+		getPeriodSensorValues: (siteKey, deviceKey, sensorKey, periodHrs) => dispatch(actions.getPeriodSensorValues(siteKey, deviceKey, sensorKey, periodHrs))	
 	}
 }
 

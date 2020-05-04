@@ -3,11 +3,12 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'; 
 import { BrowserRouter}  from 'react-router-dom'; 
 import './index.css';
-import { createStore } from 'redux'; 
+import { createStore, applyMiddleware } from 'redux'; 
 import App from './App';
+import thunk from 'redux-thunk';
 import weatherDataReducer from './store/reducers/weatherDataReducer';
 
-const store = createStore(weatherDataReducer);
+const store = createStore(weatherDataReducer, applyMiddleware(thunk));
 
 	const app = (
 	<Provider store={store}>

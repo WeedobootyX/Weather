@@ -49,7 +49,6 @@ class Layout extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		credentials: state.authReducer.credentials
 	}
 }
 
