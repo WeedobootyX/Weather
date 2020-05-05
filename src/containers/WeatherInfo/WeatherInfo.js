@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'; 
 
 import * as actions from '../../store/actions/index'; 
-
+import StatsGraph from '../../components/UI/StatsGraph/StatsGraph';
 import * as classes from './WeatherInfo.module.css'; 
 
 class WeatherInfo extends Component{
@@ -11,16 +11,28 @@ class WeatherInfo extends Component{
 		super(props);
 		const siteKey = "polypod";
 		const deviceKey = "arduino-nano-33-iot"; 
-		const sensorKey = "rain";
 		const periodHrs = 24;
-		console.log("----------before----------");
-		this.props.getPeriodSensorValues(siteKey, deviceKey, sensorKey, periodHrs);
+		this.props.getPeriodSensorValues(siteKey, deviceKey, "rain", periodHrs);
+		this.props.getPeriodSensorValues(siteKey, deviceKey, "atmospheric-pressure", periodHrs);
+		this.props.getPeriodSensorValues(siteKey, deviceKey, "outdoor-temp", periodHrs);
+		this.props.getPeriodSensorValues(siteKey, deviceKey, "wind-speed", periodHrs);
 	}
 
 	render(){
 		return (
 			<div className={ classes.WeatherInfoContainer } id="weatherInfoContainer">	
-				<p>There will be weather information here</p>
+				{this.props.sensorGraphInformationList.map(sensorGraphInformation => {
+					return (
+						<div key={sensorGraphInformation.sensorKey}>
+							<StatsGraph sensorGraphInformation={sensorGraphInformation}
+							width={600}
+							height={300}
+							xAxisDataKey="xaxis"
+							yAxisDataKey="yaxis"
+							/>
+						</div>
+					)
+				})}
 			</div>
 		)
 	}
@@ -28,7 +40,7 @@ class WeatherInfo extends Component{
 
 const mapStateToProps = (state) => {
 	return {
-		values: state
+		sensorGraphInformationList: state.sensorGraphInformationList
 	}
 }
 

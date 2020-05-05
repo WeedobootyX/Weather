@@ -31,7 +31,7 @@ export const getPeriodSensorValuesStart = () => {
 export const getPeriodSensorValuesSuccess = (data) => {
 	return {
 		type: actionTypes.GET_PERIOD_SENSOR_VALUES_SUCCESS, 
-		sensorValues: data
+		sensorGraphInformation: data
 	}
 }
 
@@ -66,7 +66,7 @@ export const getPeriodSensorValues = (siteKey, deviceKey, sensorKey, period) => 
 	return dispatch => {
 		dispatch(getPeriodSensorValuesStart());
 		const apiKey = 'abc123';
-		const url = '/sensor/values/' + siteKey + '/' + deviceKey + '/' + sensorKey + '/' + period + '/' + apiKey;
+		const url = '/sensor/graphinformation/' + siteKey + '/' + deviceKey + '/' + sensorKey + '/' + period + '/' + apiKey;
 		const headers = {
 			'headers': {
 				'Content-Type': 'text/json'

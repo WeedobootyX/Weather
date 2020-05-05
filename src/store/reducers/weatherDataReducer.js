@@ -3,7 +3,7 @@ import {updateObject} from '../../shared/utility';
 
 const initialState = {
 	sensorList: [],
-	sensorValues: [], 
+	sensorGraphInformationList: [], 
 	loading: false,
 	error: null
 }
@@ -37,9 +37,15 @@ const getPeriodSensorValuesStart = (state, action) => {
 }
 
 const getPeriodSensorValuesSuccess = (state, action) => {
-	console.log('getPeriodSensorValuesSuccess: ', getPeriodSensorValuesSuccess); 
+	const newSensorGraphInformationList = [...state.sensorGraphInformationList];
+	for(var i = 0; i < newSensorGraphInformationList.length; i++) {
+		if(newSensorGraphInformationList[i].sensorKey == action.sensorGraphInformation.sensorKey) {
+			newSensorGraphInformationList.splice(i, 1);
+		}
+	}
+	newSensorGraphInformationList.push(action.sensorGraphInformation);
 	return updateObject(state, {
-		sensorValues: action.sensorValues,
+		sensorGraphInformationList: newSensorGraphInformationList,
 		loading: false
 	});
 }
