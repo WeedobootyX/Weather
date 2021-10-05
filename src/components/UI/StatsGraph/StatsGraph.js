@@ -6,11 +6,13 @@ import * as classes from './StatsGraph.module.css';
 
 const statsGraph = (props) => {
 	const width = props.width; 
+	let xAxisDatakey = props.xAxisDatakey;
+	let yAxisDatakey = props.yAxisDatakey;
 	let tableData = [];
 	for(let i = 0; i < props.sensorGraphInformation.sensorIndicationList.length; i++){
 		tableData.push({					
-			'Tid': props.sensorGraphInformation.sensorIndicationList[i].receivedStr,
-			'Värde': props.sensorGraphInformation.sensorIndicationList[i].sensorValue1, 
+			[props.xAxisDataKey]: props.sensorGraphInformation.sensorIndicationList[i].receivedStr,
+			[props.yAxisDataKey]: props.sensorGraphInformation.sensorIndicationList[i].sensorValue1, 
 		});
 	}
 	console.log("tableData: ", tableData);

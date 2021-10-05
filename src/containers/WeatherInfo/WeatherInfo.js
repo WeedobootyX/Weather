@@ -25,10 +25,10 @@ class WeatherInfo extends Component{
 					return (
 						<div key={sensorGraphInformation.sensorKey}>
 							<StatsGraph sensorGraphInformation={sensorGraphInformation}
-							width={600}
+							width={800}
 							height={300}
-							xAxisDataKey="xaxis"
-							yAxisDataKey="yaxis"
+							xAxisDataKey={"Tid"}
+							yAxisDataKey={"Värde"}
 							/>
 						</div>
 					)
